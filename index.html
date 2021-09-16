@@ -1,18 +1,105 @@
 
-<html>
-    <body>
-      <h1> ADC Log Book </h1>
-      <p> This is a rough draft on the index, it will already have all directories for each board created.
-        All that needs to be done is create the html file for each board from the SQL on the RCF page by
-        running a certain script on it.</p>
-      <a href="html/Boards0x0x49/index.html"> Boards 0-49 </a>
-      <a href="html/Boards0x50x99/index50x99.html"> Boards 50-99 </a>
-      <a href="html/Boards0x100x149/index100x149.html"> Boards 100-149 </a>
-      <a href="html/Boards0x150x199/index150x199.html"> Boards 150-199 </a>
-      <a href="html/Boards0x200x249/index200x249.html"> Boards 200-249 </a>
-      <a href="html/Boards0x250x299/index250x299.html"> Boards 250-299 </a>
-      <a href="html/Boards0x300x349/index300x349.html"> Boards 300-349 </a>
-      <a href="html/Boards0x350x399/index350x399.html"> Boards 350-399 </a>
-      <a href="example.html"> Example Page </a>
-    </body>
-</html>
+    <html>
+        <head>
+
+        </head>
+        <body>
+          <h1> ADC Log Book </h1>
+          <p> This is a rough draft on the index, it will already have all directories for each board created.
+            All that needs to be done is create the html file for each board from the SQL on the RCF page by
+            running a certain script on it.</p>
+          <a href="html/Boards0x0x49/index.html"> Boards 0-49 </a>
+          <a href="html/Boards0x50x99/index50x99.html"> Boards 50-99 </a>
+          <a href="html/Boards0x100x149/index100x149.html"> Boards 100-149 </a>
+          <a href="html/Boards0x150x199/index150x199.html"> Boards 150-199 </a>
+          <a href="html/Boards0x200x249/index200x249.html"> Boards 200-249 </a>
+          <a href="html/Boards0x250x299/index250x299.html"> Boards 250-299 </a>
+          <a href="html/Boards0x300x349/index300x349.html"> Boards 300-349 </a>
+          <a href="html/Boards0x350x399/index350x399.html"> Boards 350-399 </a>
+
+          <hr width = "75%">
+
+          <input id="Board ID" type="number" value=0 style="Width:10%"/>
+          <button type="button" onclick="BoardFind()">Go</button>
+
+          <input id="Location_ID" type="text" value="Location" style="Width:10%"/>
+          <button type="button" onclick="LocationFind()">Find Boards</button>
+
+          <input id="Validity_ID" type="text" value="Validity" style="Width:10%"/>
+          <button type="button" onclick="ValidityFind()">Find Boards</button>
+
+          <hr width = "75%">
+
+          <table id="myTable">
+              <tr class="header">
+                <th style="width:20%;">Board</th>
+                <th style="width:20%;">Location</th>
+                <th style="width:20%;">Validity</th>
+                <th style="width:20%;">TestDate</th>
+                <th style="width:200%;">Gain</th>
+              </tr>
+         
+ <tr>  
+ <td> 3 </td>  
+ <td> Boulder, CO </td>  
+ <td> Good </td>  
+ <td> 20210706 </td>  /n <td> 375.6870130957285</td> /n </tr>  
+ </table> 
+      <script>
+          function LocationFind() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Location_ID");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[1];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          }
+          function BoardFind() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Board ID");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[0];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          }
+          function ValidityFind() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("Validity_ID");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("myTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+              td = tr[i].getElementsByTagName("td")[2];
+              if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  tr[i].style.display = "";
+                } else {
+                  tr[i].style.display = "none";
+                }
+              }
+            }
+          }
+          </script>
+        </body>
+    </html>
